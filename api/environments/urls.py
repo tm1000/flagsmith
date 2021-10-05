@@ -6,6 +6,7 @@ from integrations.amplitude.views import AmplitudeConfigurationViewSet
 from integrations.heap.views import HeapConfigurationViewSet
 from integrations.mixpanel.views import MixpanelConfigurationViewSet
 from integrations.segment.views import SegmentConfigurationViewSet
+from integrations.webhook.views import WebhookConfigurationViewSet
 
 from .identities.traits.views import TraitViewSet
 from .identities.views import IdentityViewSet
@@ -57,6 +58,11 @@ environments_router.register(
     r"integrations/mixpanel",
     MixpanelConfigurationViewSet,
     basename="integrations-mixpanel",
+)
+environments_router.register(
+    r"integrations/webhook",
+    WebhookConfigurationViewSet,
+    basename="integrations-webhook",
 )
 identity_router = routers.NestedSimpleRouter(
     environments_router, r"identities", lookup="identity"

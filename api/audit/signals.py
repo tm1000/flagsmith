@@ -116,6 +116,6 @@ if settings.ENVIRONMENTS_TABLE_NAME_DYNAMO:
 
 @receiver(post_save, sender=AuditLog)
 def send_env_to_dynamodb(sender, instance, **kwargs):
-    if instance.environment and dynamo_env_table:
+    if instance.environment.project.enable_dynamo_db and dynamo_env_table:
         env_dict = build_environment_dict(instance.environment)
         dynamo_env_table.put_item(Item=env_dict)
